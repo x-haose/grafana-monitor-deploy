@@ -35,18 +35,21 @@
 ### 安装步骤
 
 1. 克隆仓库：
+
 ```bash
 git clone https://github.com/x-haose/grafana-monitor-deploy.git
 cd grafana-monitor-deploy
 ```
 
 2. 配置环境变量：
+
 ```bash
 cp .env.example .env
 # 根据需要修改 .env 文件中的配置
 ```
 
 3. 首次部署：
+
 ```bash
 chmod +x *.sh        # 添加执行权限
 ./deploy.sh          # 部署服务
@@ -62,24 +65,24 @@ chmod +x *.sh        # 添加执行权限
 
 ## 服务端口
 
-| 服务 | 端口 | 说明 |
-|------|------|------|
-| Grafana | 40020 | 仪表盘界面 |
-| Loki Gateway | 40010 | 日志网关 |
-| Loki Read | 40011 | 日志读取接口 |
-| Loki Write | 40012 | 日志写入接口 |
-| Alloy UI | 40030 | 日志收集器界面 |
+| 服务         | 端口  | 说明           |
+| ------------ | ----- | -------------- |
+| Grafana      | 40020 | 仪表盘界面     |
+| Loki Gateway | 40010 | 日志网关       |
+| Loki Read    | 40011 | 日志读取接口   |
+| Loki Write   | 40012 | 日志写入接口   |
+| Alloy UI     | 40030 | 日志收集器界面 |
 
 ## 预配置仪表盘
 
 系统预置了以下 Grafana 仪表盘：
 
-| 仪表盘 | ID | 说明 |
-|--------|-----|------|
-| Node Exporter Full | 1860 | 主机监控指标 |
-| Cadvisor Exporter | 14282 | 容器监控指标 |
-| PostgreSQL Exporter | 14114 | PostgreSQL 监控 |
-| Redis Dashboard | 11835 | Redis 监控 |
+| 仪表盘             | ID    | 说明         |
+| ------------------ | ----- | ------------ |
+| Node Exporter Full | 1860  | 主机监控指标 |
+| Cadvisor Exporter  | 14282 | 容器监控指标 |
+
+> 如果需要直接安装其他仪表盘请修改环境变量的：`DASHBOARD_IDS`字段用英文逗号隔开
 
 ## 访问地址
 
@@ -96,6 +99,7 @@ chmod +x *.sh        # 添加执行权限
 ### 环境变量配置
 
 主要配置项（在 .env 文件中）：
+
 - `DASHBOARD_IDS`: Grafana 仪表盘 ID
 - 各服务端口配置
 - Grafana 和 MinIO 的访问凭据
@@ -103,6 +107,7 @@ chmod +x *.sh        # 添加执行权限
 ### 数据持久化
 
 所有数据存储在 `./data` 目录下：
+
 - `./data/grafana`: Grafana 数据
 - `./data/minio`: MinIO 数据（Loki 存储）
 - `./data/prometheus`: Prometheus 数据
@@ -121,6 +126,7 @@ chmod +x *.sh        # 添加执行权限
 ## 故障排查
 
 常见问题处理：
+
 ```bash
 # 查看服务状态
 docker compose ps
