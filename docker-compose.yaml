@@ -104,7 +104,7 @@ services:
             - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
             - MINIO_PROMETHEUS_AUTH_TYPE=public
             - MINIO_UPDATE=off
-        ports:
+        expose:
             - 9000
         volumes:
             - minio-data:/data
@@ -135,7 +135,7 @@ services:
         depends_on:
             - loki-gateway
         ports:
-            - "127.0.0.1:40020:3000"
+            - "${GRAFANA_PORT}:3000"
         healthcheck:
             test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1" ]
             interval: 10s
