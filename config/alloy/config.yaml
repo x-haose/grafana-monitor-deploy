@@ -23,7 +23,7 @@ loki.source.docker "flog_scrape" {
 
 loki.write "default" {
 	endpoint {
-		url       = "http://gateway:3100/loki/api/v1/push"
+		url       = "http://loki-gateway:3100/loki/api/v1/push"
 		tenant_id = "tenant1"
 	}
 	external_labels = {}
