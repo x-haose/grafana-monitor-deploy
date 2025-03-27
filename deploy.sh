@@ -52,7 +52,6 @@ fi
 
 # 创建目录（如果不存在）
 mkdir -p config/grafana/dashboards/providers
-mkdir -p data
 
 # 将环境变量字符串转换为数组
 IFS=',' read -ra DASHBOARD_ARRAY <<< "$DASHBOARD_IDS"
