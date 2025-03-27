@@ -2,6 +2,12 @@ networks:
     loki:
 
 
+volumes:
+    minio-data:
+    grafana-data:
+    prometheus-data:
+
+
 services:
     # loki读
     loki-read:
@@ -56,7 +62,7 @@ services:
         restart: unless-stopped
         volumes:
             - ./config/loki/config.yaml:/etc/loki/config.yaml
-        ports:
+        expose:
             - "3100"
             - "7946"
         command: "-config.file=/etc/loki/config.yaml -target=backend -legacy-read-mode=false"
