@@ -101,7 +101,7 @@ services:
         ports:
             - 9000
         volumes:
-            - ./data/minio:/data
+            - minio-data:/data
         healthcheck:
             test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
             interval: 15s
@@ -123,7 +123,7 @@ services:
             - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
             - GF_USERS_DEFAULT_LANGUAGE=${GF_USERS_DEFAULT_LANGUAGE}
         volumes:
-            - ./data/grafana:/var/lib/grafana
+            - grafana-data:/var/lib/grafana
             - ./config/grafana/datasources:/etc/grafana/provisioning/datasources
             - ./config/grafana/dashboards:/etc/grafana/provisioning/dashboards
         depends_on:
@@ -226,7 +226,7 @@ services:
             - '--storage.tsdb.retention.time=240h'
             - '--web.enable-lifecycle'
         volumes:
-            - ./data/prometheus:/prometheus
+            - prometheus-data:/prometheus
             - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
         expose:
             - 8080
